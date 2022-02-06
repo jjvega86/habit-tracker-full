@@ -1,9 +1,11 @@
 import React from "react";
 
+import HabitPage from "./views/Habits/HabitsPage/HabitPage";
+
 function App() {
   return (
     <>
-      <h1>Hello, Habit Tracker!</h1>
+      <HabitPage />
     </>
   );
 }
