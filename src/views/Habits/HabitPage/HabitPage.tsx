@@ -1,12 +1,18 @@
 import { Header, Container } from "./HabitPage.styles";
-import Habit from "../Habit/Habit";
+import HabitList from "../HabitList/HabitList";
+
+const dummyHabits = [
+  { text: "Meditate", streak: 0 },
+  { text: "Run", streak: 0 },
+  { text: "Sleep", streak: 0 },
+];
 
 export default function HabitPage() {
   return (
     <>
       <Header>My Habit Tracker</Header>
       <Container>
-        <Habit habitText="Meditate" habitStreak={0} />
+        <HabitList habits={dummyHabits} />
       </Container>
     </>
   );

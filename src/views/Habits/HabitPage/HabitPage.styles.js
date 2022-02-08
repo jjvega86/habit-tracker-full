@@ -10,7 +10,9 @@ export const Header = styled.h1`
 `;
 
 export const Container = styled.div`
+  align-items: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
   padding: 1rem;
 `;
