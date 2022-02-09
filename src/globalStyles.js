@@ -1,7 +1,6 @@
 import { createGlobalStyle, css } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`${css`
-  @import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
   *,
   *::before,
   *::after {

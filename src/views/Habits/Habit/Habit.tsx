@@ -1,4 +1,4 @@
-import HabitButton from "../../../components/HabitButton/HabitButton";
+import HabitButton from "../HabitButton/HabitButton";
 import { HabitContainer } from "./Habit.styles";
 
 interface HabitProps {
