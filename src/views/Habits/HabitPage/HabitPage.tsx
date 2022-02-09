@@ -1,5 +1,9 @@
+import { useContext } from "react";
+import HabitContext from "../../../context/HabitContext";
+
 import { Header, Container } from "./HabitPage.styles";
 import HabitList from "../HabitList/HabitList";
+import HabitButton from "../../../components/HabitButton/HabitButton";
 
 const dummyHabits = [
   { text: "Meditate", streak: 0 },
@@ -8,11 +12,15 @@ const dummyHabits = [
 ];
 
 export default function HabitPage() {
+  const { habitState } = useContext(HabitContext);
+  console.log(habitState);
+
   return (
     <>
       <Header>My Habit Tracker</Header>
       <Container>
-        <HabitList habits={dummyHabits} />
+        <HabitButton buttonType="add" />
+        <HabitList habits={habitState.habits} />
       </Container>
     </>
   );
