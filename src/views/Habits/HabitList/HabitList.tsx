@@ -7,7 +7,12 @@ interface HabitListProps {
 export default function HabitList({ habits }: HabitListProps) {
   let renderedHabits = habits.map((habit) => {
     return (
-      <Habit key={habit.id} habitText={habit.text} habitStreak={habit.streak} />
+      <Habit
+        key={habit.id}
+        habitId={habit.id}
+        habitText={habit.text}
+        habitStreak={habit.streak}
+      />
     );
   });
   return <>{renderedHabits}</>;

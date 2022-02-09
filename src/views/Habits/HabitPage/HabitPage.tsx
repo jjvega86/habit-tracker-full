@@ -8,8 +8,6 @@ import HabitForm from "../HabitForm/HabitForm";
 
 export default function HabitPage() {
   const { habitState, habitDispatch } = useContext(HabitContext);
-  console.log(habitState);
-
   return (
     <>
       <Header>My Habit Tracker</Header>

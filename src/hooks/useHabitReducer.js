@@ -10,8 +10,12 @@ export const initialState = {
 };
 
 export const habitReducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
+    case "FIELD":
+      return {
+        ...state,
+        [action.fieldName]: action.payload,
+      };
     case "ADD":
       return {
         habits: [
@@ -20,10 +24,37 @@ export const habitReducer = (state, action) => {
         ],
         currentText: "",
       };
-    case "FIELD":
+    case "DELETE":
+      let filteredHabits = state.habits.filter(
+        (habit) => habit.id !== action.payload
+      );
       return {
         ...state,
-        [action.fieldName]: action.payload,
+        habits: filteredHabits,
+      };
+    case "MISSED":
+      let updatedHabits = state.habits.map((habit) => {
+        if (habit.id === action.payload) {
+          return { ...habit, streak: 0 };
+        } else {
+          return habit;
+        }
+      });
+      return {
+        ...state,
+        habits: updatedHabits,
+      };
+    case "DONE":
+      let newHabits = state.habits.map((habit) => {
+        if (habit.id === action.payload) {
+          return { ...habit, streak: habit.streak + 1 };
+        } else {
+          return habit;
+        }
+      });
+      return {
+        ...state,
+        habits: newHabits,
       };
     default:
       return state;

@@ -3,7 +3,6 @@ import HabitButton from "../HabitButton/HabitButton";
 export default function HabitForm({ dispatch, currentText }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(currentText);
     dispatch({ type: "ADD", payload: currentText });
   };
   return (
