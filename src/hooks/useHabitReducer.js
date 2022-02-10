@@ -1,11 +1,8 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
+import { get } from "../services/localBase";
 
 export const initialState = {
-  habits: [
-    { id: 1, text: "Meditate", streak: 0 },
-    { id: 2, text: "Run", streak: 0 },
-    { id: 3, text: "Sleep", streak: 0 },
-  ],
+  habits: [],
   currentText: "",
 };
 
@@ -18,10 +15,7 @@ export const habitReducer = (state, action) => {
       };
     case "ADD":
       return {
-        habits: [
-          ...state.habits,
-          { id: state.habits.length + 1, text: action.payload, streak: 0 },
-        ],
+        habits: [...state.habits, action.payload],
         currentText: "",
       };
     case "DELETE":
@@ -63,6 +57,18 @@ export const habitReducer = (state, action) => {
 
 export default function useHabitReducer() {
   const [habitState, habitDispatch] = useReducer(habitReducer, initialState);
+  console.log(habitState);
+
+  useEffect(() => {
+    fetchHabits();
+  }, []);
+
+  const fetchHabits = () => {
+    let habits = get();
+    habits.forEach((habit) => {
+      habitDispatch({ type: "ADD", payload: habit });
+    });
+  };
 
   return [habitState, habitDispatch];
 }
