@@ -1,6 +1,11 @@
-import { createContext, useCallback, useEffect } from "react";
-import useHabitReducer, { initialState } from "../hooks/useHabitReducer";
-import { addHabit } from "../services/habits-repository";
+import { createContext, useCallback } from "react";
+import useHabitReducer from "../hooks/useHabitReducer";
+import {
+  addHabit,
+  addToHabitStreak,
+  deleteHabit,
+  resetHabitStreak,
+} from "../services/habits-repository";
 
 const HabitContext = createContext();
 
@@ -13,7 +18,17 @@ export const HabitProvider = ({ children }) => {
     switch (action.type) {
       case "ADD_HABIT":
         let newHabit = addHabit(action.payload);
-        habitDispatch({ type: "ADD", payload: newHabit });
+        return habitDispatch({ type: "ADD", payload: newHabit });
+      case "INCREASE_STREAK":
+        let updatedHabits = addToHabitStreak(action.payload);
+        console.log(updatedHabits);
+        return habitDispatch({ type: "DONE", payload: updatedHabits });
+      case "RESET_HABIT":
+        let habitsWithReset = resetHabitStreak(action.payload);
+        return habitDispatch({ type: "MISSED", payload: habitsWithReset });
+      case "DELETE_HABIT":
+        let reducedHabits = deleteHabit(action.payload);
+        return habitDispatch({ type: "DELETE", payload: reducedHabits });
       default:
         habitDispatch(action);
     }

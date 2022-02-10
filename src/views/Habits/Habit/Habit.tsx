@@ -17,15 +17,21 @@ export default function Habit({ habitId, habitText, habitStreak }: HabitProps) {
       <p>{habitText}</p>
       <p>{habitStreak}</p>
       <HabitButton
-        clickHandler={() => habitDispatch({ type: "DONE", payload: habitId })}
+        clickHandler={() =>
+          habitDispatch({ type: "INCREASE_STREAK", payload: habitId })
+        }
         buttonType="done"
       />
       <HabitButton
-        clickHandler={() => habitDispatch({ type: "MISSED", payload: habitId })}
+        clickHandler={() =>
+          habitDispatch({ type: "RESET_HABIT", payload: habitId })
+        }
         buttonType="missed"
       />
       <HabitButton
-        clickHandler={() => habitDispatch({ type: "DELETE", payload: habitId })}
+        clickHandler={() =>
+          habitDispatch({ type: "DELETE_HABIT", payload: habitId })
+        }
         buttonType="delete"
       />
     </HabitContainer>
