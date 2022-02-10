@@ -18,17 +18,7 @@ export const habitReducer = (state, action) => {
         habits: [...state.habits, action.payload],
         currentText: "",
       };
-    case "DELETE":
-      return {
-        ...state,
-        habits: action.payload,
-      };
-    case "MISSED":
-      return {
-        ...state,
-        habits: action.payload,
-      };
-    case "DONE":
+    case "UPDATE":
       return {
         ...state,
         habits: action.payload,

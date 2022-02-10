@@ -21,14 +21,13 @@ export const HabitProvider = ({ children }) => {
         return habitDispatch({ type: "ADD", payload: newHabit });
       case "INCREASE_STREAK":
         let updatedHabits = addToHabitStreak(action.payload);
-        console.log(updatedHabits);
-        return habitDispatch({ type: "DONE", payload: updatedHabits });
+        return habitDispatch({ type: "UPDATE", payload: updatedHabits });
       case "RESET_HABIT":
         let habitsWithReset = resetHabitStreak(action.payload);
-        return habitDispatch({ type: "MISSED", payload: habitsWithReset });
+        return habitDispatch({ type: "UPDATE", payload: habitsWithReset });
       case "DELETE_HABIT":
         let reducedHabits = deleteHabit(action.payload);
-        return habitDispatch({ type: "DELETE", payload: reducedHabits });
+        return habitDispatch({ type: "UPDATE", payload: reducedHabits });
       default:
         habitDispatch(action);
     }
