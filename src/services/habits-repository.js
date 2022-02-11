@@ -1,21 +1,27 @@
-import { get, add, increaseStreak, reset, deleteItem } from "./localBase";
+import {
+  getData,
+  addData,
+  increaseData,
+  resetData,
+  deleteData,
+} from "./localBase";
 
 export const getHabits = () => {
-  return get();
+  return getData();
 };
 
 export const addHabit = (data) => {
-  return add(data);
+  return addData(data);
 };
 
 export const addToHabitStreak = (habitId) => {
-  return increaseStreak(habitId);
+  return increaseData(habitId);
 };
 
 export const resetHabitStreak = (habitId) => {
-  return reset(habitId);
+  return resetData(habitId);
 };
 
 export const deleteHabit = (habitId) => {
-  return deleteItem(habitId);
+  return deleteData(habitId);
 };

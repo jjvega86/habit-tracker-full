@@ -1,10 +1,9 @@
-export const get = () => {
+export const getData = () => {
   return JSON.parse(localStorage.getItem("habits"));
 };
 
-export const add = (habit) => {
-  let currentHabits = get() === null ? [] : get();
-  console.log(currentHabits);
+export const addData = (habit) => {
+  let currentHabits = getData() === null ? [] : getData();
   let newHabit = {
     id: currentHabits.length + 1,
     text: habit,
@@ -14,8 +13,8 @@ export const add = (habit) => {
   return newHabit;
 };
 
-export const increaseStreak = (habitId) => {
-  let currentHabits = get() === null ? [] : get();
+export const increaseData = (habitId) => {
+  let currentHabits = getData() === null ? [] : getData();
   let updatedHabits = currentHabits.map((habit) => {
     if (habit.id === habitId) {
       return { ...habit, streak: habit.streak + 1 };
@@ -28,8 +27,8 @@ export const increaseStreak = (habitId) => {
   return updatedHabits;
 };
 
-export const reset = (habitId) => {
-  let currentHabits = get() === null ? [] : get();
+export const resetData = (habitId) => {
+  let currentHabits = getData() === null ? [] : getData();
   let updatedHabits = currentHabits.map((habit) => {
     if (habit.id === habitId) {
       return { ...habit, streak: 0 };
@@ -42,8 +41,8 @@ export const reset = (habitId) => {
   return updatedHabits;
 };
 
-export const deleteItem = (habitId) => {
-  let currentHabits = get() === null ? [] : get();
+export const deleteData = (habitId) => {
+  let currentHabits = getData() === null ? [] : getData();
   let filteredHabits = currentHabits.filter((habit) => habit.id !== habitId);
   let finalHabits = resetIds(filteredHabits);
   localStorage.removeItem("habits");
