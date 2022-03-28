@@ -4,6 +4,7 @@ import { getHabits } from "../services/habits-repository";
 export const initialState = {
   habits: [],
   currentText: "",
+  isOpen: false,
 };
 
 export const habitReducer = (state, action) => {
@@ -22,6 +23,11 @@ export const habitReducer = (state, action) => {
       return {
         ...state,
         habits: action.payload,
+      };
+    case "TOGGLE":
+      return {
+        ...state,
+        isOpen: !state.isOpen,
       };
     default:
       return state;
