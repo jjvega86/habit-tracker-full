@@ -8,11 +8,3 @@ export const Header = styled.h1`
   margin: 0 auto;
   padding: 2rem;
 `;
-
-export const Container = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 1rem;
-`;

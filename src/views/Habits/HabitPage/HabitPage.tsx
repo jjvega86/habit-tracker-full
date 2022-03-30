@@ -1,9 +1,9 @@
 import { useHabitData } from "../../../hooks/useHabitData";
 
-import { Header, Container } from "./HabitPage.styles";
 import HabitList from "../HabitList/HabitList";
 import HabitForm from "../HabitForm/HabitForm";
 import Modal from "../../../components/Modal/Modal";
+import { Container } from "../../../globalStyles";
 
 export default function HabitPage() {
   const { habitState, habitDispatch } = useHabitData();
@@ -14,7 +14,6 @@ export default function HabitPage() {
 
   return (
     <>
-      <Header>My Habit Tracker</Header>
       <Container>
         <button onClick={handleClose}>Add Habit</button>
         {habitState.isOpen && (

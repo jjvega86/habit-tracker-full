@@ -1,14 +1,32 @@
 import GlobalStyle from "./globalStyles";
+import { Routes, Route } from "react-router-dom";
+import PrivateRoute from "./utils/PrivateRoute";
 
-// Import Views
-//TODO: Install React Router and set up routing + private routes
+// Views
 import HabitPage from "./views/Habits/HabitPage/HabitPage";
+import RegisterPage from "./views/Register/RegisterPage";
+import LoginPage from "./views/Login/LoginPage";
+
+// Components
+import HabitHeader from "./components/HabitHeader/HabitHeader";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <HabitPage />
+      <HabitHeader />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <HabitPage />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
     </>
   );
 }
