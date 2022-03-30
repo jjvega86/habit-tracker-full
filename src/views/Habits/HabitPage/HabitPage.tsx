@@ -5,8 +5,16 @@ import HabitForm from "../HabitForm/HabitForm";
 import Modal from "../../../components/Modal/Modal";
 import { Container } from "../../../globalStyles";
 
+import useGetHabitsQuery from "../../../hooks/useGetHabitsQuery";
+
 export default function HabitPage() {
   const { habitState, habitDispatch } = useHabitData();
+
+  // habitState.habits initially
+  //TODO: Refactor enhanced reducer to use React Query based hooks for async data
+  //! ^^ NEXT TODO - WANT CUSTOM REDUCER TO HANDLE STATE MANAGEMENT
+
+  const { habits, isLoading } = useGetHabitsQuery();
 
   const handleClose = () => {
     habitDispatch({ type: "TOGGLE" });
@@ -24,7 +32,7 @@ export default function HabitPage() {
             />
           </Modal>
         )}
-        <HabitList habits={habitState.habits} />
+        {isLoading ? <p>Loading...</p> : <HabitList habits={habits} />}
       </Container>
     </>
   );
