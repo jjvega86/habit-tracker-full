@@ -8,7 +8,6 @@ import RegisterPage from "./views/Register/RegisterPage";
 import LoginPage from "./views/Login/LoginPage";
 
 // Components
-import HabitHeader from "./components/HabitHeader/HabitHeader";
 import Navbar from "./components/NavBar/NavBar";
 
 function App() {
@@ -16,7 +15,6 @@ function App() {
     <>
       <GlobalStyle />
       <Navbar />
-      <HabitHeader />
       <Routes>
         <Route
           path="/"
