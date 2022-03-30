@@ -9,11 +9,13 @@ import LoginPage from "./views/Login/LoginPage";
 
 // Components
 import HabitHeader from "./components/HabitHeader/HabitHeader";
+import Navbar from "./components/NavBar/NavBar";
 
 function App() {
   return (
     <>
       <GlobalStyle />
+      <Navbar />
       <HabitHeader />
       <Routes>
         <Route
