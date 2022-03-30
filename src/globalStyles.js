@@ -20,4 +20,18 @@ export const Container = styled.div`
   padding: 1rem;
 `;
 
+export const Button = styled.button`
+  background: transparent;
+  border: 2px solid steelblue;
+  color: steelblue;
+  font-size: large;
+  padding: 0.4rem 0.5rem;
+
+  &:hover {
+    background: steelblue;
+    color: white;
+    cursor: pointer;
+  }
+`;
+
 export default GlobalStyle;

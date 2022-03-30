@@ -5,7 +5,6 @@ interface HabitListProps {
 }
 
 export default function HabitList({ habits }: HabitListProps) {
-  console.log(habits);
   let renderedHabits = habits.map((habit) => {
     return (
       <Habit

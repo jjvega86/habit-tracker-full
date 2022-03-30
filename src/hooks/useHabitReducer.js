@@ -1,5 +1,4 @@
-import { useEffect, useReducer } from "react";
-import { getHabits } from "../services/habits-repository";
+import { useReducer } from "react";
 
 export const initialState = {
   habits: [],
@@ -36,18 +35,6 @@ export const habitReducer = (state, action) => {
 
 export default function useHabitReducer() {
   const [habitState, habitDispatch] = useReducer(habitReducer, initialState);
-
-  useEffect(() => {
-    fetchHabits();
-  }, []);
-
-  const fetchHabits = () => {
-    let habits = getHabits();
-    if (!habits) return;
-    habits.forEach((habit) => {
-      habitDispatch({ type: "ADD", payload: habit });
-    });
-  };
 
   return [habitState, habitDispatch];
 }

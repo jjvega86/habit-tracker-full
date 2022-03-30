@@ -1,7 +1,6 @@
-import React from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
-import useAuth from "./useAuth";
+import useAuth from "../useAuth";
 
 const fetchHabits = async (token) => {
   try {
@@ -24,10 +23,6 @@ const useGetHabitsQuery = () => {
     data: habits,
     isFetching,
   } = useQuery("habits", () => fetchHabits(token));
-  console.log("Data: ", habits);
-  console.log("isLoading: ", isLoading);
-  console.log("isFetching: ", isFetching);
-  console.log("Error: ", error);
   return { isLoading, error, habits, isFetching };
 };
 
