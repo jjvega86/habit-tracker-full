@@ -1,13 +1,16 @@
 import HabitButton from "../HabitButton/HabitButton";
 import { HabitContainer } from "./Habit.styles";
 
-interface HabitProps {
-  habitText: string;
-  habitStreak: number;
-  habitId: number;
-}
+import useDeleteHabitMutation from "../../../hooks/mutations/useDeleteHabitMutation";
 
-export default function Habit({ habitId, habitText, habitStreak }: HabitProps) {
+// interface HabitProps {
+//   habitText: string;
+//   habitStreak: number;
+//   habitId: number;
+// }
+
+export default function Habit({ habitId, habitText, habitStreak }) {
+  const { removeHabit } = useDeleteHabitMutation();
   return (
     <HabitContainer>
       <p>{habitText}</p>
@@ -18,7 +21,7 @@ export default function Habit({ habitId, habitText, habitStreak }: HabitProps) {
         buttonType="missed"
       />
       <HabitButton
-        clickHandler={() => console.log("Delete")}
+        clickHandler={() => removeHabit.mutate(habitId)}
         buttonType="delete"
       />
     </HabitContainer>

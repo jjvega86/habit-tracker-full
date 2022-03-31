@@ -1,7 +1,7 @@
 import HabitButton from "../HabitButton/HabitButton";
 import useCustomForm from "../../../hooks/useCustomForm";
 import useGetCategoriesQuery from "../../../hooks/queries/useGetCategoriesQuery";
-import usePostHabitMutation from "../../../hooks/queries/usePostHabitMutation";
+import usePostHabitMutation from "../../../hooks/mutations/usePostHabitMutation";
 
 export default function HabitForm({ onSubmit }) {
   const { categories, isLoading } = useGetCategoriesQuery();

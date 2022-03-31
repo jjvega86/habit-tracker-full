@@ -46,3 +46,19 @@ export const createHabit = async (habitData, token) => {
     console.log(error);
   }
 };
+
+export const deleteHabit = async (id, token) => {
+  try {
+    let response = await axios.delete(
+      `http://127.0.0.1:8000/api/habits/streak/${id}/`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
