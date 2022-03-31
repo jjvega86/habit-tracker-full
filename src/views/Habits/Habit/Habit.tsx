@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import HabitContext from "../../../context/HabitContext";
-
 import HabitButton from "../HabitButton/HabitButton";
 import { HabitContainer } from "./Habit.styles";
 
@@ -11,27 +8,17 @@ interface HabitProps {
 }
 
 export default function Habit({ habitId, habitText, habitStreak }: HabitProps) {
-  const { habitDispatch } = useContext(HabitContext);
   return (
     <HabitContainer>
       <p>{habitText}</p>
       <p>{habitStreak}</p>
+      <HabitButton clickHandler={() => console.log("Done")} buttonType="done" />
       <HabitButton
-        clickHandler={() =>
-          habitDispatch({ type: "INCREASE_STREAK", payload: habitId })
-        }
-        buttonType="done"
-      />
-      <HabitButton
-        clickHandler={() =>
-          habitDispatch({ type: "RESET_HABIT", payload: habitId })
-        }
+        clickHandler={() => console.log("Missed")}
         buttonType="missed"
       />
       <HabitButton
-        clickHandler={() =>
-          habitDispatch({ type: "DELETE_HABIT", payload: habitId })
-        }
+        clickHandler={() => console.log("Delete")}
         buttonType="delete"
       />
     </HabitContainer>

@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 import { BrowserRouter } from "react-router-dom";
-import { HabitProvider } from "./context/HabitContext";
 import { AuthProvider } from "./context/AuthContext";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -14,9 +13,7 @@ ReactDOM.render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <AuthProvider>
-          <HabitProvider>
-            <App />
-          </HabitProvider>
+          <App />
         </AuthProvider>
       </BrowserRouter>
     </QueryClientProvider>
