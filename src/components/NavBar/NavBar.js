@@ -14,6 +14,7 @@ const Navbar = () => {
             <b>Habit Tracker</b>
           </Link>
         </Brand>
+        {user && <ListItem>Hello, {user.username}</ListItem>}
         <ListItem>
           {user ? (
             <NavButton onClick={logoutUser}>Logout</NavButton>

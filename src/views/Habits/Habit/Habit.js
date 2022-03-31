@@ -1,7 +1,7 @@
 import HabitButton from "../HabitButton/HabitButton";
 import { HabitContainer } from "./Habit.styles";
 
-import useDeleteHabitMutation from "../../../hooks/mutations/useDeleteHabitMutation";
+import useHabitMutation from "../../../hooks/mutations/useHabitMutation";
 
 // interface HabitProps {
 //   habitText: string;
@@ -10,14 +10,17 @@ import useDeleteHabitMutation from "../../../hooks/mutations/useDeleteHabitMutat
 // }
 
 export default function Habit({ habitId, habitText, habitStreak }) {
-  const { removeHabit } = useDeleteHabitMutation();
+  const { removeHabit, updateStreak, zeroStreak } = useHabitMutation();
   return (
     <HabitContainer>
       <p>{habitText}</p>
       <p>{habitStreak}</p>
-      <HabitButton clickHandler={() => console.log("Done")} buttonType="done" />
       <HabitButton
-        clickHandler={() => console.log("Missed")}
+        clickHandler={() => updateStreak.mutate(habitId)}
+        buttonType="done"
+      />
+      <HabitButton
+        clickHandler={() => zeroStreak.mutate(habitId)}
         buttonType="missed"
       />
       <HabitButton

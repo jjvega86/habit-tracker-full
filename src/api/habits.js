@@ -62,3 +62,37 @@ export const deleteHabit = async (id, token) => {
     console.log(error);
   }
 };
+
+export const increaseStreak = async (id, token) => {
+  try {
+    let response = await axios.patch(
+      `http://127.0.0.1:8000/api/habits/streak/${id}/`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.warn(error);
+  }
+};
+
+export const resetStreak = async (id, token) => {
+  try {
+    let response = await axios.patch(
+      `http://127.0.0.1:8000/api/habits/streak/${id}/?type=reset`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
