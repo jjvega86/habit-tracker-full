@@ -20,6 +20,22 @@ export const Container = styled.div`
   padding: 1rem;
 `;
 
+export const Form = styled.form`
+  display: flex;
+  color: black;
+  flex-direction: column;
+  gap: 12px;
+  width: 80%;
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: large;
+`;
+
 export const Button = styled.button`
   background: transparent;
   border: 2px solid steelblue;

@@ -1,7 +1,12 @@
 export const parseCategories = (categories) => {
   let parsedCategories = [];
-  for (let category in categories) {
-    parseCategories.push({ name: category });
-  }
+  categories.forEach((category) => {
+    parsedCategories.push({ name: category.value });
+  });
   return parsedCategories;
+};
+
+export const formatHabitData = (habitText, selectedCategories) => {
+  let categories = parseCategories(selectedCategories);
+  return { habit_text: habitText, categories };
 };

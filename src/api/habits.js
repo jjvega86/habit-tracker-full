@@ -25,16 +25,11 @@ export const fetchCategories = async () => {
 };
 
 export const createHabit = async (habitData, token) => {
-  let categories = [];
-  categories.push({ name: habitData.category });
-  let finalData = {
-    habit_text: habitData.habitText,
-    categories,
-  };
+  console.log(habitData);
   try {
     let response = await axios.post(
       "http://127.0.0.1:8000/api/habits/",
-      finalData,
+      habitData,
       {
         headers: {
           Authorization: `Bearer ${token}`,

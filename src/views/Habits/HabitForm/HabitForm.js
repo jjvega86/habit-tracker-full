@@ -1,39 +1,62 @@
+import { useState } from "react";
+
 import HabitButton from "../HabitButton/HabitButton";
-import useCustomForm from "../../../hooks/useCustomForm";
+import { Form, Input } from "../../../globalStyles";
+import Select from "react-select";
+
+import { formatHabitData } from "../../../utils/helpers";
+
 import useGetCategoriesQuery from "../../../hooks/queries/useGetCategoriesQuery";
 import usePostHabitMutation from "../../../hooks/mutations/usePostHabitMutation";
 
 export default function HabitForm({ onSubmit }) {
-  const { categories, isLoading } = useGetCategoriesQuery();
+  const { categories } = useGetCategoriesQuery();
   const { addHabit } = usePostHabitMutation();
-  const [formData, handleInputChange, handleSubmit] = useCustomForm(
-    { habitText: "", category: "Exercise" },
-    () => {
-      addHabit.mutate(formData);
-      onSubmit();
-    }
-  );
+
+  const options = categories
+    ? categories.map((category) => {
+        return { value: category.name, label: category.name };
+      })
+    : null;
+
+  const [optionsSelected, setOptionsSelected] = useState(null);
+  const [habitText, setHabitText] = useState("");
+
+  const handleOptionSelected = (selected) => {
+    setOptionsSelected(selected);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let finalData = formatHabitData(habitText, optionsSelected);
+    addHabit.mutate(finalData);
+    onSubmit();
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <Form onSubmit={handleSubmit}>
+      <Input
         type="text"
         name="habitText"
-        value={formData.habitText}
-        onChange={handleInputChange}
+        value={habitText}
+        onChange={(e) => setHabitText(e.target.value)}
       />
-      <select
-        name="category"
-        value={formData.category}
-        onChange={handleInputChange}
-      >
-        {isLoading
-          ? null
-          : categories.map((category) => (
-              <option key={category.id}>{category.name}</option>
-            ))}
-      </select>
+      <Select
+        options={options}
+        isMulti
+        onChange={handleOptionSelected}
+        value={optionsSelected}
+        theme={(theme) => ({
+          ...theme,
+          borderRadius: 0,
+          colors: {
+            ...theme.colors,
+            primary25: "white",
+            primary: "lightblue",
+          },
+        })}
+      />
       <HabitButton buttonType="add" />
-    </form>
+    </Form>
   );
 }
